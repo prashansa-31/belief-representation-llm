@@ -1,0 +1,5 @@
+extraction:
+  MODEL_ID: "meta-llama/Llama-3.2-1B-Instruct"
+  REPO_PATH: "<path_to_local_repo>, e.g. /Users/Documents/BeliefRepLLMs"
+  TOKEN: "<hf_token_here>"
+  DEVICE: "cpu"
