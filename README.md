@@ -39,3 +39,25 @@ This module implements the computation of the GDV using dimensionality-reduced a
 ### runPipeline.py
 
 This script serves as the main driver of the entire process, coordinating dataset loading, activation extraction, probing, GDV computation, and visualization in a unified pipeline.
+
+## Analysis
+
+All analysis outputs are saved in the _output_ directory under their corresponding task.
+For reference, previously generated results can be found here:
+https://drive.google.com/drive/folders/1_uv2rNGnjJZFWWBGVLTZ7WlQ4GRTduqr?usp=sharing
+
+#### Output Files
+
+_model*accuracy*{task-type}.csv_\
+Contains accuracy, F1-score, and ROC-AUC for both linear and non-linear probes across all prompt types and transformer sub-components (Multi-Head Self-Attention, Feed-Forward Network, and hidden states).
+
+_model*separability*{task-type}.csv_\
+Includes GDV scores computed using dimensionality-reduction methods such as PCA, t-SNE, and UMAP, reported for each prompt type and transformer sub-component.
+
+### Additional Artifacts
+
+_output/probe_training_data/_\
+These folders stores per-layer activation data for each prompt type. These activations form the input to all probing experiments.
+
+_output/gdv_plots/_ and _output/accu_plots/_\
+These folders contain layer-wise comparison plots for GDV scores and probe performance (accuracy and F1-score), respectively. These plots are used to assess whether belief-related information is encoded in specific transformer layers.
