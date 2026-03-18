@@ -308,7 +308,7 @@ def triggerPipeline(splitRunFlag=False):
     ]
     model_layers_list = ["SAL", "MLP", "HS"]
     device = "cpu"
-    # model = evalLLM_obj.load_model(model_path, device, temperature, hf_token)
+    model = evalLLM_obj.load_model(model_path, device, temperature, hf_token)
     for current_runingData in dataset_list:
         print(f"Currently running Data: {current_runingData}")
         print(f"Currently running for model: {model_path}")
@@ -330,16 +330,17 @@ def triggerPipeline(splitRunFlag=False):
         model_sep_dict = pd.read_csv(f"{ROOT_PATH}/{model_sep_filename}").to_dict(
             orient="list"
         )
-
-        # pipelineCUDA(
-        #     model,
-        #     model_layers_list,
-        #     prompt_type_list,
-        #     model_path,
-        #     csv_json,
-        #     dataset_name,
-        #     attention_output_path,
-        # )
+        # To extract activations from sub-components(MHSA, FFN, HS)
+        pipelineCUDA(
+            model,
+            model_layers_list,
+            prompt_type_list,
+            model_path,
+            csv_json,
+            dataset_name,
+            attention_output_path,
+        )
+        # To analyse the extracted activations
         final_model_acc_dict, final_model_sep_dict = pipelineCPU(
             model_layers_list,
             prompt_type_list,

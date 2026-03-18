@@ -4,6 +4,57 @@
 
 This repository contains the source code for running experiments conducted, as part of the Master Thesis work - **Layer-wise Analysis of Belief Representation in Transformer Language Model**.
 
+## Key Contribution:
+
+### Layer-wise analysis of belief representations
+
+Performed a systematic, layer-wise investigation of how false-belief information is encoded across transformer components, including multi-head self-attention (MHSA), feed-forward networks (FFN), and residual-connected hidden states.
+
+### Probing-based evaluation of belief encoding
+
+Applied both linear (logistic regression) and non-linear (SVM with RBF kernel) probing methods to analyze whether internal activations encode distinguishable false-belief states (correct vs. incorrect).
+
+### Geometric analysis using GDV
+
+Applied the Generalized Discrimination Value (GDV) to measure the geometric separability of belief states in high-dimensional activation space, providing a complementary metric to standard classification performance.
+
+### Use of controlled Theory of Mind benchmarks
+
+Used the ToMChallenge dataset, based on canonical false-belief paradigms (Sally-Anne and Smarties tasks), to evaluate belief encoding under controlled and varied prompt conditions.
+
+## Key Findings
+
+1. _Belief representations are weak and fragmented_ : False-belief information is present but inconsistently encoded, providing only partial evidence for coherent internal representations.
+2. _Encoding is concentrated in attention and residual pathways_ : Belief-related signals primarily emerge in mid-to-late attention layers and persist through the residual stream, with minimal contribution from feed-forward networks.
+3. _Representations exhibit non-linear structure_ : Belief states are not cleanly separable using linear methods, but become distinguishable under non-linear analysis, indicating complex underlying geometry.
+4. _Encoding is highly context and prompt-dependent_ : The clarity of belief representations varies significantly with input structure, with more structured prompts and certain task types yielding stronger signals.
+
+### Visualization
+
+![Visualization](figures/MHSA_accuracy_perLayer.png)
+
+_Belief-state accuracy across layers in MHSA, showing strongest signals in mid-to-late attention layers._
+
+![Visualization](figures/MHSA_GDV.png)
+
+_Belief-state separability (GDV) across layers in MHSA, showing strongest signals in mid-to-late attention layers._
+
+![Visualization](figures/FFN_accuracy_perLayer.png)
+
+_Belief-state accuracy across layers in FFN, showing no signals across layers._
+
+![Visualization](figures/FFN_GDV.png)
+
+_Belief-state separability (GDV) across layers in FFN, showing no signal across layers._
+
+![Visualization](figures/HS_accuracy.png)
+
+_Belief-state accuracy across layers in residual stream (HS), showing strongest signals in mid-to-late attention layers._
+
+![Visualization](figures/HS_GDV.png)
+
+_Belief-state separability (GDV) across layers in residual stream (HS), showing strongest signals in mid-to-late attention layers._
+
 ## How to Run:
 
 To execute the code, follow these steps:
